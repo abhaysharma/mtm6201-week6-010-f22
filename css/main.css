@@ -1,3 +1,14 @@
+:root{
+  /* 
+    valid names: --special-color --specialcolor --specialColor 
+    invalid name: --special color
+  */
+  --special-color: tomato;
+  --second-color: #551CF1;
+  --light-color: white;
+  --dark-color: #333;
+}
+
 .container{
   max-width: 900px;
   margin: 0 auto;
@@ -22,8 +33,8 @@ main > p{
 
 /* + is Adjacent combinator */
 h2+p{
-  background-color: black;
-  color: white;
+  background-color: var(--dark-color);
+  color: var(--light-color);
   padding: 1rem;
 }
 /* ~ is Sibling combinator */
@@ -37,10 +48,46 @@ h2+p{
 
 /* [] is to use attributes as selectors */
 a[href="#"]{
-  color: tomato;
+  color: var(--special-color);
+}
+/* ^= is to check if value begins with */
+a[href^="http"]{
+  border-left: 4px solid var(--second-color);
+  padding-left: 1rem;
 }
 
-a[href^="http"]{
-  border-left: 4px solid #551CF1;
-  padding-left: 1rem;
+/* State related pseudo classes */
+
+/* LoVe HAte */
+nav a,
+nav a:link,
+nav a:visited{
+  display: inline-block;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: transform .5s;
+}
+nav a:hover,
+nav a:focus{
+  text-decoration: underline;
+  transform: scale(1.4);
+}
+nav a:active{
+  transform: scale(1.4) translateX(10px);
+}
+
+/* Pseudo Elements */
+a[href$=".pdf"]::after{
+  content: "\2913";
+  font-size: 1.25rem;
+  color: var(--special-color);
+}
+h2+p::first-line{
+  color: var(--special-color);
+}
+h3+p::first-letter{
+  background-color: var(--second-color);
+  color: var(--light-color);
+  padding: .25rem;
+  margin-right: .10rem;
 }
